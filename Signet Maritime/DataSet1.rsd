@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition">
+  <DataSet Name="">
+    <Query>
+      <DataSourceReference>DataSource1</DataSourceReference>
+      <CommandText>SELECT        Job.JobNumber AS [Job #], Job.VesselName, HoursWorked.Date, HoursWorked.HoursWorkedRT AS [Hours RT]
+FROM            HoursWorked INNER JOIN
+                         Job ON HoursWorked.JobID = Job.JobID</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="Job__">
+        <DataField>Job #</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="VesselName">
+        <DataField>VesselName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Date">
+        <DataField>Date</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="Hours_RT">
+        <DataField>Hours RT</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>
