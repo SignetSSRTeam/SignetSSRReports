@@ -8,7 +8,24 @@
     </ProjectItem>
   </DataSources>
   <DataSets />
-  <Reports />
+  <Reports>
+    <ProjectItem>
+      <Name>Project hours worked weely.rdl</Name>
+      <FullPath>Project hours worked weely.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Total Project Hours Worked By Job Classification.rdl</Name>
+      <FullPath>Total Project Hours Worked By Job Classification.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Employee Hours Worked Weekly.rdl</Name>
+      <FullPath>Employee Hours Worked Weekly.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Hours Worked by Employee.rdl</Name>
+      <FullPath>Hours Worked by Employee.rdl</FullPath>
+    </ProjectItem>
+  </Reports>
   <Configurations>
     <Configuration>
       <Name>Debug</Name>
