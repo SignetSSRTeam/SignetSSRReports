@@ -12,16 +12,47 @@
               <Width>1in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.52083in</Width>
+              <Width>1.15625in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.5in</Width>
+              <Width>1.15625in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
             <TablixRow>
               <Height>0.25in</Height>
               <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox1">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Job Number</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox1</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>CornflowerBlue</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="Textbox3">
@@ -55,21 +86,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox2">
+                    <Textbox Name="Textbox5">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Job ID</Value>
+                              <Value>Hours Worked RT</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox2</rd:DefaultName>
+                      <rd:DefaultName>Textbox5</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -93,7 +124,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Hours Worked RT</Value>
+                              <Value>Hours Worked OT</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -115,29 +146,34 @@
                     </Textbox>
                   </CellContents>
                 </TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.25in</Height>
+              <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox9">
+                    <Textbox Name="JobNumber">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Hours Worked OT</Value>
+                              <Value>=Fields!JobNumber.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox9</rd:DefaultName>
+                      <rd:DefaultName>JobNumber</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>CornflowerBlue</BackgroundColor>
+                        <BackgroundColor>=IIF((RowNumber(nothing)   MOD 2) , "LightBlue","White")</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -146,11 +182,6 @@
                     </Textbox>
                   </CellContents>
                 </TablixCell>
-              </TablixCells>
-            </TablixRow>
-            <TablixRow>
-              <Height>0.25in</Height>
-              <TablixCells>
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="VesselName">
@@ -168,37 +199,6 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>VesselName</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <BackgroundColor>=IIF((RowNumber(nothing)   MOD 2) , "LightBlue","White")</BackgroundColor>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="JobID1">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!JobID.Value</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>JobID1</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -298,10 +298,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>0.05556in</Top>
-        <Left>2.19667in</Left>
+        <Top>0.61333in</Top>
+        <Left>3.82167in</Left>
         <Height>0.5in</Height>
-        <Width>5.02083in</Width>
+        <Width>4.3125in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -309,24 +309,37 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>0.92708in</Height>
+    <Height>2in</Height>
     <Style />
   </Body>
-  <Width>12.155in</Width>
+  <Width>10.375in</Width>
   <Page>
     <PageHeader>
-      <Height>1.99875in</Height>
+      <Height>1in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
-        <Textbox Name="Textbox8">
+        <Image Name="Image1">
+          <Source>Embedded</Source>
+          <Value>index</Value>
+          <Sizing>FitProportional</Sizing>
+          <Left>2.47792in</Left>
+          <Height>0.86931in</Height>
+          <Width>1.15625in</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </Image>
+        <Textbox Name="Textbox13">
           <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>PROJECT HOURS Worked Weekly</Value>
+                  <Value>TOTAL PROJECT HOURS WORKED ON A GIVEN MONTH</Value>
                   <Style>
                     <FontSize>14pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -337,43 +350,11 @@
               <Style />
             </Paragraph>
           </Paragraphs>
-          <rd:DefaultName>Textbox8</rd:DefaultName>
-          <Top>0.51958in</Top>
-          <Left>3.32167in</Left>
+          <rd:DefaultName>Textbox13</rd:DefaultName>
+          <Top>0.30083in</Top>
+          <Left>3.82167in</Left>
           <Height>0.25in</Height>
-          <Width>3.32292in</Width>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="Textbox10">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>From : Beginning Week to End Week</Value>
-                  <Style>
-                    <FontSize>12pt</FontSize>
-                    <FontWeight>Bold</FontWeight>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox10</rd:DefaultName>
-          <Top>1.20708in</Top>
-          <Left>2.19667in</Left>
-          <Height>0.25in</Height>
-          <Width>2.97917in</Width>
+          <Width>5.53125in</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>
@@ -385,32 +366,6 @@
             <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
-        <Image Name="Image1">
-          <Source>Embedded</Source>
-          <Value>index</Value>
-          <Sizing>FitProportional</Sizing>
-          <Top>0.12375in</Top>
-          <Left>2.19667in</Left>
-          <Height>0.85417in</Height>
-          <Width>0.9375in</Width>
-          <ZIndex>2</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-          </Style>
-        </Image>
-        <Line Name="Line1">
-          <Top>1.99875in</Top>
-          <Height>0in</Height>
-          <Width>12.155in</Width>
-          <ZIndex>3</ZIndex>
-          <Style>
-            <Border>
-              <Style>Solid</Style>
-            </Border>
-          </Style>
-        </Line>
       </ReportItems>
       <Style>
         <Border>
@@ -426,30 +381,24 @@
   </Page>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="SignetSSRDataSource">
+    <DataSource Name="DataSource1">
       <DataSourceReference>SignetSSRDataSource</DataSourceReference>
       <rd:SecurityType>None</rd:SecurityType>
-      <rd:DataSourceID>881e7d02-3c2d-4680-81ea-bfebe7b1a4d4</rd:DataSourceID>
+      <rd:DataSourceID>3091fa99-2a1c-4d84-90de-90131073495a</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="DataSet1">
       <Query>
-        <DataSourceName>SignetSSRDataSource</DataSourceName>
-        <QueryParameters>
-          <QueryParameter Name="@Date">
-            <Value>=Parameters!Date.Value</Value>
-          </QueryParameter>
-        </QueryParameters>
-        <CommandText>SELECT        Job.JobID, Job.VesselName, HoursWorked.HoursWorkedRT, HoursWorked.HoursWorkedOT, HoursWorked.Date
+        <DataSourceName>DataSource1</DataSourceName>
+        <CommandText>SELECT        Job.JobNumber, Job.VesselName, HoursWorked.HoursWorkedRT, HoursWorked.HoursWorkedOT
 FROM            Job INNER JOIN
-                         HoursWorked ON Job.JobID = HoursWorked.JobID
-WHERE        (HoursWorked.Date = @Date)</CommandText>
+                         HoursWorked ON Job.JobID = HoursWorked.JobID</CommandText>
       </Query>
       <Fields>
-        <Field Name="JobID">
-          <DataField>JobID</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+        <Field Name="JobNumber">
+          <DataField>JobNumber</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="VesselName">
           <DataField>VesselName</DataField>
@@ -463,22 +412,54 @@ WHERE        (HoursWorked.Date = @Date)</CommandText>
           <DataField>HoursWorkedOT</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="Date">
-          <DataField>Date</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
+      </Fields>
+    </DataSet>
+    <DataSet Name="DataSet2">
+      <Query>
+        <DataSourceName>DataSource1</DataSourceName>
+        <CommandText>SELECT        DATEPART(MONTH, Date) AS Month, DATEPART(YEAR, Date) AS Year
+FROM            HoursWorked</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Month">
+          <DataField>Month</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Year">
+          <DataField>Year</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
   </DataSets>
   <ReportParameters>
-    <ReportParameter Name="Date">
-      <DataType>DateTime</DataType>
+    <ReportParameter Name="month">
+      <DataType>Integer</DataType>
+      <Prompt>MONTH</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>DataSet2</DataSetName>
+          <ValueField>Month</ValueField>
+          <LabelField>Month</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="Year">
+      <DataType>String</DataType>
       <DefaultValue>
         <Values>
-          <Value>3/4/2015 12:00:00 AM</Value>
+          <Value>2015</Value>
         </Values>
       </DefaultValue>
-      <Prompt>Date</Prompt>
+      <Prompt>YEAR</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>DataSet2</DataSetName>
+          <ValueField>Year</ValueField>
+          <LabelField>Year</LabelField>
+        </DataSetReference>
+      </ValidValues>
     </ReportParameter>
   </ReportParameters>
   <EmbeddedImages>
@@ -491,5 +472,5 @@ OM8VxzUqNB0AGkUZKcn7RkkBuB9kSO/dOXkM4YhSW50bTqpZ9JcecfgOVWChfM55lCxbyoOJkGF+TbMF
     </EmbeddedImage>
   </EmbeddedImages>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
-  <rd:ReportID>8eab6b77-c290-4bd3-83fc-f861425476a7</rd:ReportID>
+  <rd:ReportID>ac301d4a-1593-4191-a6fd-9b0c5dd58d30</rd:ReportID>
 </Report>

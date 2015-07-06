@@ -309,10 +309,10 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>2in</Height>
+    <Height>1.1875in</Height>
     <Style />
   </Body>
-  <Width>10.96875in</Width>
+  <Width>8.79167in</Width>
   <Page>
     <PageHeader>
       <Height>1.54042in</Height>
@@ -489,10 +489,20 @@ FROM            Rate</CommandText>
     </ReportParameter>
     <ReportParameter Name="BeginDate">
       <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>1/1/2015 12:00:00 AM</Value>
+        </Values>
+      </DefaultValue>
       <Prompt>Begin Date</Prompt>
     </ReportParameter>
     <ReportParameter Name="EndDate">
       <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>12/12/2015 12:00:00 AM</Value>
+        </Values>
+      </DefaultValue>
       <Prompt>End Date</Prompt>
     </ReportParameter>
   </ReportParameters>
