@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition">
+  <Description />
+  <DataSet Name="DataSet2">
+    <Query>
+      <DataSourceReference>SignetSSRDataSource</DataSourceReference>
+      <CommandText>SELECT        Job.JobID, Job.JobNumber, Job.VesselName
+FROM            Job</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="JobID">
+        <DataField>JobID</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="JobNumber">
+        <DataField>JobNumber</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="VesselName">
+        <DataField>VesselName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>
