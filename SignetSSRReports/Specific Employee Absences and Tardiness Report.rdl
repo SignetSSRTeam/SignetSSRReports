@@ -260,7 +260,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Date.Value</Value>
-                              <Style />
+                              <Style>
+                                <Format>d MMM yyyy</Format>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -435,7 +437,7 @@
             <FilterExpression>=Fields!EmployeeID.Value</FilterExpression>
             <Operator>In</Operator>
             <FilterValues>
-              <FilterValue>=Parameters!ReportParameter1.Value</FilterValue>
+              <FilterValue>=Parameters!employeeID.Value</FilterValue>
             </FilterValues>
           </Filter>
         </Filters>
@@ -465,7 +467,7 @@
           <Value>index</Value>
           <Sizing>FitProportional</Sizing>
           <Top>0.10292in</Top>
-          <Left>1.405in</Left>
+          <Left>2.655in</Left>
           <Height>0.88194in</Height>
           <Width>1.15625in</Width>
           <Style>
@@ -608,7 +610,7 @@ FROM            Employee</CommandText>
     </DataSet>
   </DataSets>
   <ReportParameters>
-    <ReportParameter Name="ReportParameter1">
+    <ReportParameter Name="employeeID">
       <DataType>Integer</DataType>
       <Prompt>EmployeeID</Prompt>
       <ValidValues>
