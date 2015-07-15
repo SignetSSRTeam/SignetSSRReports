@@ -32,7 +32,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Vessel Name</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -44,6 +46,15 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <TopBorder>
+                          <Color>Black</Color>
+                        </TopBorder>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                        </BottomBorder>
+                        <LeftBorder>
+                          <Color>Black</Color>
+                        </LeftBorder>
                         <BackgroundColor>CornflowerBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -63,7 +74,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Job Number</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -75,6 +88,12 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <TopBorder>
+                          <Color>Black</Color>
+                        </TopBorder>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                        </BottomBorder>
                         <BackgroundColor>CornflowerBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -94,7 +113,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Total Hours RT</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -106,6 +127,12 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <TopBorder>
+                          <Color>Black</Color>
+                        </TopBorder>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                        </BottomBorder>
                         <BackgroundColor>CornflowerBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -125,7 +152,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Total Hours OT</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -137,6 +166,15 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <TopBorder>
+                          <Color>Black</Color>
+                        </TopBorder>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                        </BottomBorder>
+                        <RightBorder>
+                          <Color>Black</Color>
+                        </RightBorder>
                         <BackgroundColor>CornflowerBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -173,6 +211,12 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <TopBorder>
+                          <Style>None</Style>
+                        </TopBorder>
+                        <LeftBorder>
+                          <Color>Black</Color>
+                        </LeftBorder>
                         <BackgroundColor>=IIF((RowNumber(nothing)   MOD 2) , "LightBlue","White")</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -204,6 +248,9 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <TopBorder>
+                          <Style>None</Style>
+                        </TopBorder>
                         <BackgroundColor>=IIF((RowNumber(nothing)   MOD 2) , "LightBlue","White")</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -235,6 +282,9 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <TopBorder>
+                          <Style>None</Style>
+                        </TopBorder>
                         <BackgroundColor>=IIF((RowNumber(nothing)   MOD 2) , "LightBlue","White")</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -266,6 +316,12 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <TopBorder>
+                          <Style>None</Style>
+                        </TopBorder>
+                        <RightBorder>
+                          <Color>Black</Color>
+                        </RightBorder>
                         <BackgroundColor>=IIF((RowNumber(nothing)   MOD 2) , "LightBlue","White")</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -302,13 +358,23 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>=IIF((RowNumber(nothing)   MOD 2) , "LightBlue","White")</BackgroundColor>
+                        <TopBorder>
+                          <Color>Black</Color>
+                        </TopBorder>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                        </BottomBorder>
+                        <LeftBorder>
+                          <Color>Black</Color>
+                        </LeftBorder>
+                        <BackgroundColor>Lavender</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -320,8 +386,10 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
-                              <Style />
+                              <Value>Totals:</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -333,13 +401,20 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>=IIF((RowNumber(nothing)   MOD 2) , "LightBlue","White")</BackgroundColor>
+                        <TopBorder>
+                          <Color>Black</Color>
+                        </TopBorder>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                        </BottomBorder>
+                        <BackgroundColor>Lavender</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -350,10 +425,6 @@
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
-                            <TextRun>
-                              <Value>Total RT =</Value>
-                              <Style />
-                            </TextRun>
                             <TextRun>
                               <Value>=Sum(Fields!TotalHoursRT.Value)</Value>
                               <Style />
@@ -370,13 +441,20 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>=IIF((RowNumber(nothing)   MOD 2) , "LightBlue","White")</BackgroundColor>
+                        <TopBorder>
+                          <Color>Black</Color>
+                        </TopBorder>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                        </BottomBorder>
+                        <BackgroundColor>Lavender</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -387,10 +465,6 @@
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
-                            <TextRun>
-                              <Value>Total OT=</Value>
-                              <Style />
-                            </TextRun>
                             <TextRun>
                               <Value>=Sum(Fields!TotalHoursOT.Value)</Value>
                               <Style />
@@ -407,13 +481,23 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>=IIF((RowNumber(nothing)   MOD 2) , "LightBlue","White")</BackgroundColor>
+                        <TopBorder>
+                          <Color>Black</Color>
+                        </TopBorder>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                        </BottomBorder>
+                        <RightBorder>
+                          <Color>Black</Color>
+                        </RightBorder>
+                        <BackgroundColor>Lavender</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -442,8 +526,8 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>0.24875in</Top>
-        <Left>3.41542in</Left>
+        <Top>0.01389in</Top>
+        <Left>1.89583in</Left>
         <Height>0.75in</Height>
         <Width>4in</Width>
         <Style>
@@ -453,10 +537,10 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>1.1875in</Height>
+    <Height>0.76389in</Height>
     <Style />
   </Body>
-  <Width>8.79167in</Width>
+  <Width>6.625in</Width>
   <Page>
     <PageHeader>
       <Height>2.2175in</Height>
@@ -482,8 +566,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox9</rd:DefaultName>
-          <Top>0.28in</Top>
-          <Left>4.41542in</Left>
+          <Top>0.38417in</Top>
+          <Left>2.04042in</Left>
           <Height>0.25in</Height>
           <Width>3.625in</Width>
           <Style>
@@ -502,9 +586,9 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>="Job Class:  " &amp; Join(Parameters!JobType.Label, ",")</Value>
+                  <Value>="Job Class Selected:  " &amp; Join(Parameters!JobType.Label, ", ")</Value>
                   <Style>
-                    <FontSize>12pt</FontSize>
+                    <FontSize>11pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
@@ -513,9 +597,9 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox10</rd:DefaultName>
-          <Top>1.16194in</Top>
-          <Left>2.66542in</Left>
-          <Height>0.98612in</Height>
+          <Top>1.03694in</Top>
+          <Left>1.25in</Left>
+          <Height>1.04862in</Height>
           <Width>5.375in</Width>
           <ZIndex>1</ZIndex>
           <Style>
@@ -532,8 +616,8 @@
           <Source>Embedded</Source>
           <Value>index</Value>
           <Sizing>FitProportional</Sizing>
-          <Top>0.28in</Top>
-          <Left>2.61333in</Left>
+          <Top>0.13417in</Top>
+          <Left>0.36333in</Left>
           <Height>0.82292in</Height>
           <Width>1.38542in</Width>
           <ZIndex>2</ZIndex>

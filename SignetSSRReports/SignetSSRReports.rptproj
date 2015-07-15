@@ -23,8 +23,12 @@
       <FullPath>Employee Hours Worked Weekly.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>Hours Worked by Employee.rdl</Name>
-      <FullPath>Hours Worked by Employee.rdl</FullPath>
+      <Name>Materials Expense Details.rdl</Name>
+      <FullPath>Materials Expense Details.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>ProfitSummary.rdl</Name>
+      <FullPath>ProfitSummary.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
       <Name>Project hours worked weely.rdl</Name>
@@ -43,12 +47,8 @@
       <FullPath>Total Project Hours Worked on a given Month.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>Materials Expense Details.rdl</Name>
-      <FullPath>Materials Expense Details.rdl</FullPath>
-    </ProjectItem>
-    <ProjectItem>
-      <Name>ProfitSummary.rdl</Name>
-      <FullPath>ProfitSummary.rdl</FullPath>
+      <Name>Hours Worked by Employee.rdl</Name>
+      <FullPath>Hours Worked by Employee.rdl</FullPath>
     </ProjectItem>
   </Reports>
   <Configurations>
@@ -57,7 +57,8 @@
       <Platform>Win32</Platform>
       <Options>
         <OutputPath>bin\Debug</OutputPath>
-        <TargetServerVersion>SSRS2008R2</TargetServerVersion>
+        <TargetServerVersion>SSRS2008</TargetServerVersion>
+        <TargetServerURL>http://192.245.222.208/reportserver</TargetServerURL>
         <TargetFolder>SignetSSRReports</TargetFolder>
         <TargetDataSourceFolder>Data Sources</TargetDataSourceFolder>
         <TargetDatasetFolder>Datasets</TargetDatasetFolder>

@@ -25,7 +25,7 @@
         </QueryParameters>
         <CommandText>SELECT        Job.JobNumber, Job.JobID, Job.ItemNumber, MaterialsExpense.ExpenseDate, MaterialsExpense.ExpenseDescription, MaterialsExpense.PONumber, MaterialsExpense.InvoiceNumber, 
                          MaterialsExpense.Expense AS [Expense Amount], CASE WHEN MaterialsExpense.TaxIncluded = 1 THEN 'True' ELSE 'False' END AS [Tax Included], 
-                         (CASE WHEN MaterialsExpense.TaxIncluded = 1 THEN Expense + (Expense * TaxPercentage) WHEN MaterialsExpense.TaxIncluded = 0 THEN Expense END) AS [After TaxExpense], 
+                         (CASE WHEN MaterialsExpense.TaxIncluded = 1 THEN Expense + (Expense * (TaxPercentage/100)) WHEN MaterialsExpense.TaxIncluded = 0 THEN Expense END) AS [After TaxExpense], 
                          MaterialsExpense.TaxPercentage, MaterialsExpense.MarkupPercentage, Job.VesselName
 FROM            Job INNER JOIN
                          MaterialsExpense ON Job.JobID = MaterialsExpense.JobID
@@ -87,9 +87,11 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
       </Fields>
     </DataSet>
     <DataSet Name="JobDataSet">
-      <SharedDataSet>
-        <SharedDataSetReference>JobDataSet</SharedDataSetReference>
-      </SharedDataSet>
+      <Query>
+        <DataSourceName>DataSource1</DataSourceName>
+        <CommandText>SELECT        Job.JobID, Job.JobNumber, Job.VesselName
+FROM            Job</CommandText>
+      </Query>
       <Fields>
         <Field Name="JobID">
           <DataField>JobID</DataField>
@@ -120,7 +122,7 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                   <Width>0.85937in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.9323in</Width>
+                  <Width>0.64063in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1in</Width>
@@ -135,19 +137,19 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                   <Width>0.95833in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1in</Width>
+                  <Width>0.875in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.91667in</Width>
+                  <Width>0.70834in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1in</Width>
+                  <Width>0.96875in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1in</Width>
+                  <Width>0.94792in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1in</Width>
+                  <Width>0.86458in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -165,11 +167,13 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                                 <TextRun>
                                   <Value>Job Number</Value>
                                   <Style>
-                                    <Color>White</Color>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox23</rd:DefaultName>
@@ -178,6 +182,15 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                            </LeftBorder>
                             <BackgroundColor>CornflowerBlue</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -198,11 +211,13 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                                 <TextRun>
                                   <Value>Vessel Name</Value>
                                   <Style>
-                                    <Color>White</Color>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox16</rd:DefaultName>
@@ -211,6 +226,12 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                            </BottomBorder>
                             <BackgroundColor>CornflowerBlue</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -229,13 +250,15 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Item Number</Value>
+                                  <Value>Item #</Value>
                                   <Style>
-                                    <Color>White</Color>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox1</rd:DefaultName>
@@ -244,6 +267,12 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                            </BottomBorder>
                             <BackgroundColor>CornflowerBlue</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -264,11 +293,13 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                                 <TextRun>
                                   <Value>Expense Date</Value>
                                   <Style>
-                                    <Color>White</Color>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox3</rd:DefaultName>
@@ -277,6 +308,12 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                            </BottomBorder>
                             <BackgroundColor>CornflowerBlue</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -297,11 +334,13 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                                 <TextRun>
                                   <Value>Expense Description</Value>
                                   <Style>
-                                    <Color>White</Color>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox5</rd:DefaultName>
@@ -310,6 +349,12 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                            </BottomBorder>
                             <BackgroundColor>CornflowerBlue</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -330,11 +375,13 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                                 <TextRun>
                                   <Value>Invoice Number</Value>
                                   <Style>
-                                    <Color>White</Color>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox7</rd:DefaultName>
@@ -343,6 +390,12 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                            </BottomBorder>
                             <BackgroundColor>CornflowerBlue</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -363,11 +416,13 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                                 <TextRun>
                                   <Value>PONumber</Value>
                                   <Style>
-                                    <Color>White</Color>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox9</rd:DefaultName>
@@ -376,6 +431,12 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                            </BottomBorder>
                             <BackgroundColor>CornflowerBlue</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -396,11 +457,13 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                                 <TextRun>
                                   <Value>Expense Amount</Value>
                                   <Style>
-                                    <Color>White</Color>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox11</rd:DefaultName>
@@ -409,6 +472,12 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                            </BottomBorder>
                             <BackgroundColor>CornflowerBlue</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -429,11 +498,13 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                                 <TextRun>
                                   <Value>Tax Included</Value>
                                   <Style>
-                                    <Color>White</Color>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox13</rd:DefaultName>
@@ -442,6 +513,12 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                            </BottomBorder>
                             <BackgroundColor>CornflowerBlue</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -462,11 +539,13 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                                 <TextRun>
                                   <Value>Materials + Tax</Value>
                                   <Style>
-                                    <Color>White</Color>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox15</rd:DefaultName>
@@ -475,6 +554,12 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                            </BottomBorder>
                             <BackgroundColor>CornflowerBlue</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -495,11 +580,13 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                                 <TextRun>
                                   <Value>Materials + Markup</Value>
                                   <Style>
-                                    <Color>White</Color>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox17</rd:DefaultName>
@@ -508,6 +595,12 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                            </BottomBorder>
                             <BackgroundColor>CornflowerBlue</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -528,11 +621,13 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                                 <TextRun>
                                   <Value>Materials Profit</Value>
                                   <Style>
-                                    <Color>White</Color>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox21</rd:DefaultName>
@@ -541,6 +636,15 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                            </BottomBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                            </RightBorder>
                             <BackgroundColor>CornflowerBlue</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -568,7 +672,9 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>JobNumber</rd:DefaultName>
@@ -577,6 +683,13 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Style>None</Style>
+                            </TopBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                            </LeftBorder>
+                            <BackgroundColor>= IIf(RowNumber(Nothing) Mod 2 = 0, "White", "LightBlue")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -609,6 +722,10 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Style>None</Style>
+                            </TopBorder>
+                            <BackgroundColor>= IIf(RowNumber(Nothing) Mod 2 = 0, "White", "LightBlue")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -641,6 +758,10 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Style>None</Style>
+                            </TopBorder>
+                            <BackgroundColor>= IIf(RowNumber(Nothing) Mod 2 = 0, "White", "LightBlue")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -675,6 +796,10 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Style>None</Style>
+                            </TopBorder>
+                            <BackgroundColor>= IIf(RowNumber(Nothing) Mod 2 = 0, "White", "LightBlue")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -696,7 +821,9 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>ExpenseDescription</rd:DefaultName>
@@ -705,6 +832,10 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Style>None</Style>
+                            </TopBorder>
+                            <BackgroundColor>= IIf(RowNumber(Nothing) Mod 2 = 0, "White", "LightBlue")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -726,7 +857,9 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>InvoiceNumber</rd:DefaultName>
@@ -735,6 +868,10 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Style>None</Style>
+                            </TopBorder>
+                            <BackgroundColor>= IIf(RowNumber(Nothing) Mod 2 = 0, "White", "LightBlue")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -767,6 +904,10 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Style>None</Style>
+                            </TopBorder>
+                            <BackgroundColor>= IIf(RowNumber(Nothing) Mod 2 = 0, "White", "LightBlue")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -799,6 +940,10 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Style>None</Style>
+                            </TopBorder>
+                            <BackgroundColor>= IIf(RowNumber(Nothing) Mod 2 = 0, "White", "LightBlue")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -832,6 +977,10 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Style>None</Style>
+                            </TopBorder>
+                            <BackgroundColor>= IIf(RowNumber(Nothing) Mod 2 = 0, "White", "LightBlue")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -866,6 +1015,10 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Style>None</Style>
+                            </TopBorder>
+                            <BackgroundColor>= IIf(RowNumber(Nothing) Mod 2 = 0, "White", "LightBlue")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -884,7 +1037,7 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Microsoft.VisualBasic.Interaction.Switch(Fields!Tax_Included.Value = True, Fields!After_TaxExpense.Value + (Fields!After_TaxExpense.Value * Fields!MarkupPercentage.Value), Fields!Tax_Included.Value = False, Fields!Expense_Amount.Value + (Fields!Expense_Amount.Value * Fields!MarkupPercentage.Value))</Value>
+                                  <Value>=Microsoft.VisualBasic.Interaction.Switch(Fields!Tax_Included.Value = True, Fields!After_TaxExpense.Value + (Fields!After_TaxExpense.Value * (Fields!MarkupPercentage.Value/100)), Fields!Tax_Included.Value = False, Fields!Expense_Amount.Value + (Fields!Expense_Amount.Value * (Fields!MarkupPercentage.Value/100)))</Value>
                                   <Style>
                                     <Format>'$'#,0.00;('$'#,0.00)</Format>
                                   </Style>
@@ -901,6 +1054,10 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Style>None</Style>
+                            </TopBorder>
+                            <BackgroundColor>= IIf(RowNumber(Nothing) Mod 2 = 0, "White", "LightBlue")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -908,7 +1065,6 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                             <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -937,6 +1093,13 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Style>None</Style>
+                            </TopBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                            </RightBorder>
+                            <BackgroundColor>= IIf(RowNumber(Nothing) Mod 2 = 0, "White", "LightBlue")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -964,7 +1127,9 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox291</rd:DefaultName>
@@ -973,6 +1138,16 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                            </LeftBorder>
+                            <BackgroundColor>Lavender</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -994,7 +1169,9 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox292</rd:DefaultName>
@@ -1003,6 +1180,13 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                            </BottomBorder>
+                            <BackgroundColor>Lavender</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1024,7 +1208,9 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox293</rd:DefaultName>
@@ -1033,6 +1219,13 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                            </BottomBorder>
+                            <BackgroundColor>Lavender</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1054,7 +1247,9 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox294</rd:DefaultName>
@@ -1063,6 +1258,13 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                            </BottomBorder>
+                            <BackgroundColor>Lavender</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1084,7 +1286,9 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox295</rd:DefaultName>
@@ -1093,6 +1297,13 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                            </BottomBorder>
+                            <BackgroundColor>Lavender</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1114,7 +1325,9 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox296</rd:DefaultName>
@@ -1123,6 +1336,13 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                            </BottomBorder>
+                            <BackgroundColor>Lavender</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1157,6 +1377,13 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                            </BottomBorder>
+                            <BackgroundColor>Lavender</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1175,7 +1402,9 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Microsoft.VisualBasic.Strings.FormatCurrency(System.Math.round(Sum(Fields!Expense_Amount.Value), 2))</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -1189,6 +1418,13 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                            </BottomBorder>
+                            <BackgroundColor>Lavender</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1207,7 +1443,9 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <TextRuns>
                                 <TextRun>
                                   <Value />
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -1221,6 +1459,13 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                            </BottomBorder>
+                            <BackgroundColor>Lavender</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1240,6 +1485,7 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                                 <TextRun>
                                   <Value>=Microsoft.VisualBasic.Strings.FormatCurrency(System.Math.round(Sum(Fields!After_TaxExpense.Value)))</Value>
                                   <Style>
+                                    <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0.00;('$'#,0.00)</Format>
                                   </Style>
                                 </TextRun>
@@ -1255,6 +1501,13 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                            </BottomBorder>
+                            <BackgroundColor>Lavender</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1275,6 +1528,7 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                                 <TextRun>
                                   <Value>=Microsoft.VisualBasic.Interaction.Switch(Fields!Tax_Included.Value = True, Sum(Fields!After_TaxExpense.Value + (Fields!After_TaxExpense.Value * Fields!MarkupPercentage.Value)), Fields!Tax_Included.Value = False, Sum(Fields!Expense_Amount.Value + (Fields!Expense_Amount.Value * Fields!MarkupPercentage.Value)))</Value>
                                   <Style>
+                                    <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0.00;('$'#,0.00)</Format>
                                   </Style>
                                 </TextRun>
@@ -1290,6 +1544,13 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                            </BottomBorder>
+                            <BackgroundColor>Lavender</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1310,6 +1571,7 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                                 <TextRun>
                                   <Value>=Microsoft.VisualBasic.Interaction.Switch(Fields!Tax_Included.Value = True, Sum(Fields!After_TaxExpense.Value + (Fields!After_TaxExpense.Value * Fields!MarkupPercentage.Value)), Fields!Tax_Included.Value = False, Sum(Fields!Expense_Amount.Value + (Fields!Expense_Amount.Value * Fields!MarkupPercentage.Value))) - Sum(Fields!After_TaxExpense.Value)</Value>
                                   <Style>
+                                    <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0.00;('$'#,0.00)</Format>
                                   </Style>
                                 </TextRun>
@@ -1325,6 +1587,16 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                            </BottomBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                            </RightBorder>
+                            <BackgroundColor>Lavender</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1371,110 +1643,49 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>MaterialsExpenseDataSet</DataSetName>
-            <Top>0.22792in</Top>
-            <Left>0.42646in</Left>
+            <Top>0.06125in</Top>
             <Height>0.75in</Height>
-            <Width>11.17709in</Width>
+            <Width>10.33334in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
             </Style>
           </Tablix>
-          <Line Name="Line5">
-            <Top>0.00917in</Top>
-            <Left>0.01958in</Left>
-            <Height>0in</Height>
-            <Width>14.70833in</Width>
-            <ZIndex>1</ZIndex>
-            <Style>
-              <Border>
-                <Style>Solid</Style>
-              </Border>
-            </Style>
-          </Line>
-          <Line Name="Line6">
-            <Top>2.20709in</Top>
-            <Height>0in</Height>
-            <Width>14.91542in</Width>
-            <ZIndex>2</ZIndex>
-            <Style>
-              <Border>
-                <Style>Solid</Style>
-              </Border>
-            </Style>
-          </Line>
-          <Line Name="Line7">
-            <Left>0.00917in</Left>
-            <Height>0in</Height>
-            <Width>14.90625in</Width>
-            <ZIndex>3</ZIndex>
-            <Style>
-              <Border>
-                <Style>Solid</Style>
-              </Border>
-            </Style>
-          </Line>
         </ReportItems>
-        <Height>2.20709in</Height>
+        <Height>0.81125in</Height>
         <Style />
       </Body>
-      <Width>14.91542in</Width>
+      <Width>10.33334in</Width>
       <Page>
         <PageHeader>
-          <Height>1.01958in</Height>
+          <Height>1.00916in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
-            <Image Name="Image1">
-              <Source>Embedded</Source>
-              <Value>index</Value>
-              <Sizing>FitProportional</Sizing>
-              <Left>1.75979in</Left>
-              <Height>0.44792in</Height>
-              <Width>1.14584in</Width>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-              </Style>
-            </Image>
-            <Textbox Name="Textbox8">
+            <Textbox Name="Textbox14">
               <CanGrow>true</CanGrow>
               <KeepTogether>true</KeepTogether>
               <Paragraphs>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value xml:space="preserve">  </Value>
+                      <Value>MATERIALS EXPENSE DETAILS</Value>
                       <Style>
-                        <FontStyle>Normal</FontStyle>
-                        <FontFamily>Times New Roman</FontFamily>
-                        <FontSize>16pt</FontSize>
+                        <FontSize>14pt</FontSize>
                         <FontWeight>Bold</FontWeight>
-                        <TextDecoration>None</TextDecoration>
-                      </Style>
-                    </TextRun>
-                    <TextRun>
-                      <Value>MATERIAL  EXPENSE DETAILS</Value>
-                      <Style>
-                        <FontFamily>Times New Roman</FontFamily>
-                        <FontSize>16pt</FontSize>
-                        <FontWeight>Bold</FontWeight>
-                        <TextDecoration>None</TextDecoration>
-                        <Color>CornflowerBlue</Color>
+                        <TextDecoration>Underline</TextDecoration>
                       </Style>
                     </TextRun>
                   </TextRuns>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <rd:DefaultName>Textbox8</rd:DefaultName>
-              <Top>0.19792in</Top>
-              <Left>4.78062in</Left>
+              <rd:DefaultName>Textbox9</rd:DefaultName>
+              <Top>0.34833in</Top>
+              <Left>2.13418in</Left>
               <Height>0.25in</Height>
-              <Width>3.84375in</Width>
-              <ZIndex>1</ZIndex>
+              <Width>3.3125in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1485,6 +1696,21 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
                 <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
+            <Image Name="Image1">
+              <Source>Embedded</Source>
+              <Value>index</Value>
+              <Sizing>FitProportional</Sizing>
+              <Top>0.09833in</Top>
+              <Left>0.4375in</Left>
+              <Height>0.82292in</Height>
+              <Width>1.38542in</Width>
+              <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+              </Style>
+            </Image>
           </ReportItems>
           <Style>
             <Border>
@@ -1492,20 +1718,12 @@ WHERE        (Job.JobID IN (@JobID)) AND (MaterialsExpense.ExpenseDate BETWEEN @
             </Border>
           </Style>
         </PageHeader>
-        <PageFooter>
-          <Height>1in</Height>
-          <PrintOnFirstPage>true</PrintOnFirstPage>
-          <PrintOnLastPage>true</PrintOnLastPage>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-          </Style>
-        </PageFooter>
-        <LeftMargin>1in</LeftMargin>
-        <RightMargin>1in</RightMargin>
-        <TopMargin>1in</TopMargin>
-        <BottomMargin>1in</BottomMargin>
+        <PageHeight>8.5in</PageHeight>
+        <PageWidth>11in</PageWidth>
+        <LeftMargin>0.1in</LeftMargin>
+        <RightMargin>0.1in</RightMargin>
+        <TopMargin>0.1in</TopMargin>
+        <BottomMargin>0.1in</BottomMargin>
         <Style />
       </Page>
     </ReportSection>

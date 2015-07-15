@@ -109,9 +109,11 @@ FROM Job</CommandText>
       </Fields>
     </DataSet>
     <DataSet Name="JobDataSet">
-      <SharedDataSet>
-        <SharedDataSetReference>JobDataSet</SharedDataSetReference>
-      </SharedDataSet>
+      <Query>
+        <DataSourceName>SignetSSRDataSource</DataSourceName>
+        <CommandText>SELECT        Job.JobID, Job.JobNumber, Job.VesselName
+FROM            Job</CommandText>
+      </Query>
       <Fields>
         <Field Name="JobID">
           <DataField>JobID</DataField>
