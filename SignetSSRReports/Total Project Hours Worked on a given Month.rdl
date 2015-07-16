@@ -619,10 +619,17 @@
     <DataSet Name="DataSet1">
       <Query>
         <DataSourceName>DataSource1</DataSourceName>
-        <CommandText>SELECT        Job.JobNumber, Job.VesselName, sum(HoursWorked.HoursWorkedRT) as TotalHoursRT, sum(HoursWorked.HoursWorkedOT) as TotalHoursOT
+        <QueryParameters>
+          <QueryParameter Name="@Month">
+            <Value>=Parameters!Month.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT        Job.JobNumber, Job.VesselName, SUM(HoursWorked.HoursWorkedRT) AS TotalHoursRT, SUM(HoursWorked.HoursWorkedOT) AS TotalHoursOT, HoursWorked.Date,
+CONVERT(varchar(15), DATENAME(MONTH,Date)) AS Month, DATEPART(YEAR, Date) AS Year
 FROM            Job INNER JOIN
                          HoursWorked ON Job.JobID = HoursWorked.JobID
-group by Job.JobNumber, Job.VesselName</CommandText>
+Where CONVERT(varchar(15), DATENAME(MONTH,Date)) = @Month
+GROUP BY Job.JobNumber, Job.VesselName, HoursWorked.Date</CommandText>
       </Query>
       <Fields>
         <Field Name="JobNumber">
@@ -641,12 +648,24 @@ group by Job.JobNumber, Job.VesselName</CommandText>
           <DataField>TotalHoursOT</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="Date">
+          <DataField>Date</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Month">
+          <DataField>Month</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Year">
+          <DataField>Year</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
       </Fields>
     </DataSet>
     <DataSet Name="DataSet2">
       <Query>
         <DataSourceName>DataSource1</DataSourceName>
-        <CommandText>SELECT        DISTINCT DATENAME(MONTH, Date) AS Month, DATEPART(YEAR, Date) AS Year
+        <CommandText>SELECT        DISTINCT DATENAME(MONTH,Date) AS Month, DATEPART(YEAR, Date) AS Year
 FROM            HoursWorked</CommandText>
       </Query>
       <Fields>
@@ -662,31 +681,30 @@ FROM            HoursWorked</CommandText>
     </DataSet>
   </DataSets>
   <ReportParameters>
-    <ReportParameter Name="month">
+    <ReportParameter Name="YEAR">
       <DataType>Integer</DataType>
-      <Prompt>MONTH</Prompt>
-      <ValidValues>
-        <DataSetReference>
-          <DataSetName>DataSet2</DataSetName>
-          <ValueField>Month</ValueField>
-          <LabelField>Month</LabelField>
-        </DataSetReference>
-      </ValidValues>
-      <MultiValue>true</MultiValue>
-    </ReportParameter>
-    <ReportParameter Name="Year">
-      <DataType>String</DataType>
       <DefaultValue>
         <Values>
           <Value>2015</Value>
         </Values>
       </DefaultValue>
-      <Prompt>YEAR</Prompt>
+      <Prompt>year</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>DataSet2</DataSetName>
           <ValueField>Year</ValueField>
           <LabelField>Year</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Month">
+      <DataType>String</DataType>
+      <Prompt>Month</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>DataSet2</DataSetName>
+          <ValueField>Month</ValueField>
+          <LabelField>Month</LabelField>
         </DataSetReference>
       </ValidValues>
     </ReportParameter>
