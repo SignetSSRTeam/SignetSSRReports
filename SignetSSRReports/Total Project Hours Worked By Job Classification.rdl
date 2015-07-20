@@ -37,7 +37,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox1</rd:DefaultName>
@@ -79,7 +81,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox13</rd:DefaultName>
@@ -118,7 +122,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox2</rd:DefaultName>
@@ -157,7 +163,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox5</rd:DefaultName>
@@ -202,7 +210,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>VesselName</rd:DefaultName>
@@ -239,7 +249,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>JobNumber</rd:DefaultName>
@@ -273,7 +285,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>TotalHoursRT</rd:DefaultName>
@@ -307,7 +321,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>TotalHoursOT</rd:DefaultName>
@@ -349,7 +365,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox7</rd:DefaultName>
@@ -374,7 +392,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -392,7 +409,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox15</rd:DefaultName>
@@ -414,7 +433,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -431,7 +449,7 @@
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Right</TextAlign>
+                            <TextAlign>Center</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -454,7 +472,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -471,7 +488,7 @@
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Right</TextAlign>
+                            <TextAlign>Center</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -497,7 +514,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -659,11 +675,19 @@
           <QueryParameter Name="@EndDate">
             <Value>=Parameters!EndDate.Value</Value>
           </QueryParameter>
+          <QueryParameter Name="@JobType">
+            <Value>=Parameters!JobType.Value</Value>
+          </QueryParameter>
         </QueryParameters>
-        <CommandText>SELECT        Job.VesselName, HoursWorked.Date, SUM(HoursWorked.HoursWorkedRT) AS TotalHoursRT, SUM(HoursWorked.HoursWorkedOT) AS TotalHoursOT, Job.JobNumber
-FROM            Job INNER JOIN
-                         HoursWorked ON Job.JobID = HoursWorked.JobID
-WHERE        (HoursWorked.Date BETWEEN @BeginDate AND @EndDate)
+        <CommandText>SELECT Job.VesselName, 
+	   HoursWorked.Date, 
+	   SUM(HoursWorked.HoursWorkedRT) AS TotalHoursRT, 
+	   SUM(HoursWorked.HoursWorkedOT) AS TotalHoursOT, Job.JobNumber
+FROM Job 
+INNER JOIN HoursWorked 
+	ON Job.JobID = HoursWorked.JobID
+WHERE (HoursWorked.Date BETWEEN @BeginDate AND @EndDate)
+AND Job.RateID IN (@JobType)
 GROUP BY Job.VesselName, HoursWorked.Date, Job.JobNumber</CommandText>
       </Query>
       <Fields>
@@ -692,7 +716,7 @@ GROUP BY Job.VesselName, HoursWorked.Date, Job.JobNumber</CommandText>
     <DataSet Name="DataSet2">
       <Query>
         <DataSourceName>SignetSSRDataSource</DataSourceName>
-        <CommandText>SELECT        JobType
+        <CommandText>SELECT        RateID, JobType
 FROM            Rate</CommandText>
       </Query>
       <Fields>
@@ -700,17 +724,21 @@ FROM            Rate</CommandText>
           <DataField>JobType</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="RateID">
+          <DataField>RateID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
       </Fields>
     </DataSet>
   </DataSets>
   <ReportParameters>
     <ReportParameter Name="JobType">
-      <DataType>String</DataType>
+      <DataType>Integer</DataType>
       <Prompt>Job Classification</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>DataSet2</DataSetName>
-          <ValueField>JobType</ValueField>
+          <ValueField>RateID</ValueField>
           <LabelField>JobType</LabelField>
         </DataSetReference>
       </ValidValues>

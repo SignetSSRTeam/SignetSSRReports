@@ -23,6 +23,10 @@
       <FullPath>Employee Hours Worked Weekly.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
+      <Name>Hours Worked by Employee.rdl</Name>
+      <FullPath>Hours Worked by Employee.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
       <Name>Materials Expense Details.rdl</Name>
       <FullPath>Materials Expense Details.rdl</FullPath>
     </ProjectItem>
@@ -45,10 +49,6 @@
     <ProjectItem>
       <Name>Total Project Hours Worked on a given Month.rdl</Name>
       <FullPath>Total Project Hours Worked on a given Month.rdl</FullPath>
-    </ProjectItem>
-    <ProjectItem>
-      <Name>Hours Worked by Employee.rdl</Name>
-      <FullPath>Hours Worked by Employee.rdl</FullPath>
     </ProjectItem>
   </Reports>
   <Configurations>

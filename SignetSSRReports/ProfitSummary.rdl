@@ -3110,10 +3110,6 @@ FROM            Job</CommandText>
       <DefaultValue>
         <Values>
           <Value>1</Value>
-          <Value>2</Value>
-          <Value>3</Value>
-          <Value>4</Value>
-          <Value>6</Value>
         </Values>
       </DefaultValue>
       <Prompt>Job ID</Prompt>
